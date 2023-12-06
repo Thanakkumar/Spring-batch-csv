@@ -1,0 +1,48 @@
+version: '3'
+services:
+  mysql-db:
+    image: mysql:8.0
+    hostname: mysql-db
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'capstone'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+
+  mongo_db:
+    image: mongo:4.4.3
+    restart: always
+    ports:
+      - 27017:27017
+#  batch-app:
+#    image: batch-process-app:latest
+#    ports:
+#      - "8080:8080"
+#    restart: always
+#    depends_on:
+#      - mysql-db # This service depends on mysql. Start that first.
+#      - mongo_db # This service depends on mongodb. Start that first.
+#    environment: # Pass environment variables to the service
+#      #SPRING_DATASOURCE_DRIVER-CLASS-NAME: com.mysql.cj.jdbc.Driver
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/capstone
+#      SPRING_DATASOURCE_USERNAME: user
+#      SPRING_DATASOURCE_PASSWORD: password
+#      SPRING_SQL_INT_PLATFORM: mysql
+#      SPRING_SQL_INT_CONTINUE-ON-ERROR: false
+#      SPRING_BATCH_JOB_ENABLED: true
+#      SPRING_BATCH_JDBC_INITIALIZE-SCHEMA: always
+#      SPRING_SQL_INT_MODE: always
+#      SPRING_DATA_MONGODB_HOST: mongo_db
+#      SPRING_DATA_MONGODB_PORT: 27017
+#      SPRING_DATA_MONGODB_DATABASE: capstone
+#      FILE_INPUT: 50records.csv
+#      FIELD_NAMES: field1,field2,field3,field4
+#      RUN: true
+#      SPRING_PROFILES_ACTIVE: nosql
+volumes:
+  my-db-volume:
+
